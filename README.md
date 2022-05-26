@@ -1,2 +1,2 @@
 # Bash_Scripts
-This is a storage location for bash scripts as I learn.
+_Below is a basic cheat sheet for bash commands_ 
