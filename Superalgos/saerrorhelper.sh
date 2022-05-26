@@ -56,11 +56,19 @@ case "$answer" in
     
 esac
 
-sleep 3s
-echo "beep"
-sleep 2s
-echo "boop"
-sleep 2s
-echo "bop"
-sleep 5s
-echo "We might have found a solution to your problem!"
+
+
+function computeLag() {
+    sleep 3s
+    echo "beep"
+    sleep 2s
+    echo "boop"
+    sleep 2s
+    echo "bop"
+    sleep 5s
+    echo "We might have found a solution to your problem!"
+}
+
+computeLag
+
+
