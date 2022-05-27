@@ -7,7 +7,8 @@
 function installController() {
     getUserInfo
     giveUserPermissions
-  #  getDependencies
+    getDependencies
+    initSetup
     clone
 }
 #
@@ -32,13 +33,14 @@ function giveUserPermissions() {
     user=$(whoami)
     echo "$user"
     echo " Please Input Your User Password To Allow For sudo Commands"
-    sudo usermod -aG sudo "$user"
+    echo "sudo usermod -aG sudo "$user" "
     sleep 3s
 }
 #
 # Here We Install The Main Dependencies.
 function getDependencies() {
-    echo "somestuff Dependencies yada yada"
+    echo "apt-get install git"
+    echo "curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash - && sudo apt-get \install -y \nodejs npm git python3"
 }
 #
 # Here We Will Move Clone Superalgos To The Home Directory.
@@ -46,6 +48,14 @@ function clone() {
     cd ~
     ls
     sleep 5s
+    echo "$fork"
+}
+#
+## Here We Setup Superalgos By Utilizing The Existing Install Scripts.
+function initSetup() {
+    echo "cd Superalgos"
+    echo "node setup"
+    echo "node setupPlugins "$username" "$token""
 }
 #
 # Lets Clear the Terminal So Everything Starts Neat And Tidy.
