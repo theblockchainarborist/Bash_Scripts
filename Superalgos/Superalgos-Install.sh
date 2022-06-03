@@ -10,8 +10,8 @@ function installController() {
     giveUserPermissions
     getDependencies
     getDocker
-    initSetup
     cloneFork
+    initSetup
 }
 #
 ## Here we will gather what system info we can as to install the correct stuff.
@@ -26,6 +26,8 @@ function getSystemInfo() {
     if [ "$piChoice" = "y" ]
     then
         isPi="y"
+        echo "What a guess, we can work with that!"
+    fi
     sleep 5s
 }
 #
