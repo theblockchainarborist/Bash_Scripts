@@ -17,73 +17,88 @@ function installController() {
 ## Here we will gather what system info we can as to install the correct stuff.
 function getSystemInfo() {
     #Name the current operating system.
-    osName=$(uname)
+osName=$(uname)
     #What bit is the system?
-    osBit=$(getconf LONG_BIT)
-    echo "We are running on a "$osName" system that is "$osBit"bits from what we can tell."
-    echo "Is this a Raspberry Pi?"
-    read -p '(y/n): ' piChoice
-    if [ "$piChoice" = "y" ]
-    then
-        isPi="y"
-        echo "What a guess, we can work with that!"
-    fi
-    sleep 5s
+osBit=$(getconf LONG_BIT)
+echo "We are running on a "$osName" system that is "$osBit"bits from what we can tell."
+echo "Is this a Raspberry Pi?"
+read -p '(y/n): ' piChoice
+if [ "$piChoice" = "y" ]
+then
+    isPi="y"
+    echo "What a guess, we can work with that!"
+fi
+sleep 5s
 }
 #
 # Here We Get The Needed User Info To Complete The Install.
 function getUserInfo() {
-    echo " What is your github user name?"
-    read -p '(UserName): ' username
-    echo " Welcome "$username" "
-    sleep 2s
-    echo " What is the URL of your Superalgos Fork?"
-    read -p '(ForkURL): ' fork
-    sleep 2s
-    echo " What github token would you like to use?"
-    read -p '(Token): ' token
-    echo " The Install Script Is About To Begin."
-    sleep 3s
-    clear
+echo " What is your github user name?"
+read -p '(UserName): ' username
+echo " Welcome "$username" "
+sleep 2s
+echo " What is the URL of your Superalgos Fork?"
+read -p '(ForkURL): ' fork
+sleep 2s
+echo " What github token would you like to use?"
+read -p '(Token): ' token
+echo " The Install Script Is About To Begin."
+sleep 3s
+clear
 }
 #
 # Here We Give The User The Needed Permissions.
 function giveUserPermissions() {
-    user=$(whoami)
-    echo "$user"
-    echo " Please Input Your User Password To Allow For sudo Commands"
-    sudo usermod -aG sudo "$user"
-    sleep 5s
+user=$(whoami)
+echo "$user"
+echo " Please Input Your User Password To Allow For sudo Commands"
+sudo usermod -aG sudo "$user"
+    
 }
 #
 # Here We Install The Main Dependencies.
 function getDependencies() {
-    curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash - && sudo apt-get \install -y \nodejs npm git python3
-    sleep 5s
+    echo "## Getting ready to get nodejs from nodesource............."
+    curl -sL https://deb.nodesource.com/setup_17.x
+    echo "## Getting nodejs.........................................."
+    sudo apt-get install nodejs
+    echo "## Getting python.........................................."
+    sudo apt-get install python3
+
+sleep 5s
 }
 #
 ## If the user wants docker, the user gets docker.
 function getDocker() {
-    if [ "$docker" = "y" ]
-    then
-        curl -fsSL https://get.docker.com -o get-docker.sh
-        sudo sh get-docker.sh
-        sleep 5s
-    fi    
+if [ "$docker" = "y" ]
+then
+    echo "## Getting ready to get docker from docker.com............."
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    echo "## Getting docker.........................................."
+    sudo sh get-docker.sh
+    sleep 5s
+fi    
 }
 #
 # Here We Will Move Clone Superalgos To The Home Directory.
 function cloneFork() {
+    echo "## Preparing to clone your fork............................"
+    echo "# First we move to the home directory......................"
     cd ~
+    echo "## Cloning Fork............................................"
     git clone "$fork"
+    echo "## Fork Cloned"
     sleep 5s
 }
 #
 ## Here We Setup Superalgos By Utilizing The Existing Install Scripts.
 function initSetup() {
-    cd Superalgos
-    node setup
-    node setupPlugins "$username" "$token"
+    echo "## Preparing to setup Superalgos..........................."
+    cd ~/Superalgos
+    echo "Running node setup script.................................."
+    sh node setup
+    echo "## Running node setupPlugins script........................"
+    sh node setupPlugins "$username" "$token"
     sleep 5s
 }
 #
