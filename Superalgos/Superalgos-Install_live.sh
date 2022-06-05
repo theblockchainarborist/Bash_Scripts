@@ -90,7 +90,6 @@ function cloneFork() {
     echo "## Fork Cloned"
     sleep 5s
 }
-IFS=$'\n'
 #
 ## Here We Setup Superalgos By Utilizing The Existing Install Scripts.
 function initSetup() {
