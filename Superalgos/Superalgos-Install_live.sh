@@ -53,7 +53,7 @@ function giveUserPermissions() {
     user=$(whoami)
     echo "$user"
     echo " Please Input Your User Password To Allow For sudo Commands"
-    givesudo=`sudo usermod -aG sudo "$user"`
+    givesudo='sudo usermod -aG sudo "$user"'
     eval $givesudo
     wait
 }
@@ -61,19 +61,19 @@ function giveUserPermissions() {
 # Here We Install The Main Dependencies.
 function getDependencies() {
     echo "## First lets update........................................"
-    update=`sudo apt update`
+    update='sudo apt update'
     eval $update
     wait
     echo "## Getting curl............................................."
-    curl=`sudo apt install -y curl`
+    curl='sudo apt install -y curl'
     eval $curl
     wait
     echo "## Getting Node From NodeSource............................."
-    nodeSource=`curl -sL https://deb.nodesource.com/setup_17.x`
+    nodeSource='curl -sL https://deb.nodesource.com/setup_17.x'
     eval $nodeSource
     wait
     echo "## Getting Nodejs"
-    getnode=`sudo apt-get install -y nodejs`
+    getnode='sudo apt-get install -y nodejs'
     eval $getnode
     wait
     sleep 20s
@@ -84,11 +84,11 @@ function getDocker() {
 if [ "$docker" = "y" ]
 then
     echo "## Getting ready to get docker from docker.com............."
-    locationD=`curl -fsSL https://get.docker.com -o get-docker.sh`
+    locationD='curl -fsSL https://get.docker.com -o get-docker.sh'
     eval $locationD
     wait
     echo "## Getting docker.........................................."
-    getDocker=`sudo sh get-docker.sh`
+    getDocker='sudo sh get-docker.sh'
     eval $getDocker
     wait
 fi    
@@ -98,11 +98,11 @@ fi
 function cloneFork() {
     echo "## Preparing to clone your fork............................"
     echo "# First we move to the home directory......................"
-    movehome=`cd ~`
+    movehome='cd ~'
     eval $movehome
     wait
     echo "## Cloning Fork............................................"
-    clone=`git clone "$fork"`
+    clone='git clone "$fork"'
     eval $clone
     wait
     echo "## Fork Cloned"
@@ -112,15 +112,15 @@ function cloneFork() {
 ## Here We Setup Superalgos By Utilizing The Existing Install Scripts.
 function initSetup() {
     echo "## Preparing to setup Superalgos..........................."
-    homeS=`cd ~/Superalgos`
+    homeS='cd ~/Superalgos'
     eval $homeS
     wait
     echo "Running node setup script.................................."
-    setup=`node setup`
+    setup='node setup'
     eval $setup
     wait
     echo "## Running node setupPlugins script........................"
-    plugins=`node setupPlugins "$username" "$token"`
+    plugins='node setupPlugins "$username" "$token"'
     eval $plugins
     wait
     sleep 5s
