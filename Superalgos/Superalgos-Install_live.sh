@@ -90,15 +90,19 @@ function cloneFork() {
     echo "## Fork Cloned"
     sleep 5s
 }
+IFS=$'\n'
 #
 ## Here We Setup Superalgos By Utilizing The Existing Install Scripts.
 function initSetup() {
     echo "## Preparing to setup Superalgos..........................."
-    cd ~/Superalgos
+    homeS="cd ~/Superalgos"
+    eval $homeS
     echo "Running node setup script.................................."
-    sh node setup
+    setup="node platform"
+    eval $setup
     echo "## Running node setupPlugins script........................"
-    sh node setupPlugins "$username" "$token"
+    plugins="node setupPlugins "$username" "$token""
+    eval $plugins
     sleep 5s
 }
 #
