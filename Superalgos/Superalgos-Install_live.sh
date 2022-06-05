@@ -84,7 +84,8 @@ fi
 function cloneFork() {
     echo "## Preparing to clone your fork............................"
     echo "# First we move to the home directory......................"
-    cd ~
+    home="cd ~"
+    eval $home
     echo "## Cloning Fork............................................"
     git clone "$fork"
     echo "## Fork Cloned"
@@ -97,7 +98,7 @@ function initSetup() {
     homeS="cd ~/Superalgos"
     eval $homeS
     echo "Running node setup script.................................."
-    setup="node platform"
+    setup="node setup"
     eval $setup
     echo "## Running node setupPlugins script........................"
     plugins="node setupPlugins "$username" "$token""
