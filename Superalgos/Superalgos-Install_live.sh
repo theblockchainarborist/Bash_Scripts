@@ -60,10 +60,15 @@ function giveUserPermissions() {
 #
 # Here We Install The Main Dependencies.
 function getDependencies() {
-    echo "## Getting Dependencies...................................."
-    dependencies="curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash - && sudo apt-get \ install -y \ nodejs npm git python3"
+    echo "## Getting Node From NodeSource............................."
+    dependencies="curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash -"
+    eval $dependencies
     wait
-    sleep 10s
+    echo "## Getting Nodejs"
+    getnode="sudo apt-get install -y nodejs"
+    eval $getnode
+    wait
+    sleep 20s
 }
 #
 ## If the user wants docker, the user gets docker.
