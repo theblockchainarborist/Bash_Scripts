@@ -6,12 +6,20 @@
 # This is the install control function.
 function installController() {
     getSystemInfo
+    wait
     getUserInfo
+    wait
     giveUserPermissions
+    wait
     getDependencies
+    wait
     getDocker
+    wait
     cloneFork
+    wait
     initSetup
+    wait
+    showFinishMessage
 }
 #
 ## Here we will gather what system info we can as to install the correct stuff.
@@ -21,14 +29,7 @@ osName=$(uname)
     #What bit is the system?
 osBit=$(getconf LONG_BIT)
 echo "We are running on a "$osName" system that is "$osBit"bits from what we can tell."
-echo "Is this a Raspberry Pi?"
-read -p '(y/n): ' piChoice
-if [ "$piChoice" = "y" ]
-then
-    isPi="y"
-    echo "What a guess, we can work with that!"
-fi
-sleep 5s
+sleep 10s
 }
 #
 # Here We Get The Needed User Info To Complete The Install.
@@ -52,20 +53,23 @@ function giveUserPermissions() {
 user=$(whoami)
 echo "$user"
 echo " Please Input Your User Password To Allow For sudo Commands"
-sudo usermod -aG sudo "$user"
-    
+givesudo="sudo usermod -aG sudo "$user""
+eval $givesudo
 }
 #
 # Here We Install The Main Dependencies.
 function getDependencies() {
     echo "## Getting ready to get nodejs from nodesource............."
-    curl -sL https://deb.nodesource.com/setup_17.x
+    locationN="curl -sL https://deb.nodesource.com/setup_17.x"
+    eval $locationN
+    wait
     echo "## Getting nodejs.........................................."
-    sudo apt-get install nodejs
+    getNode="sudo apt-get install nodejs -y"
+    eval $getNode
+    wait
     echo "## Getting python.........................................."
-    sudo apt-get install python3
-
-sleep 5s
+    getPython="sudo apt-get install python3 -y"
+    wait
 }
 #
 ## If the user wants docker, the user gets docker.
@@ -73,21 +77,27 @@ function getDocker() {
 if [ "$docker" = "y" ]
 then
     echo "## Getting ready to get docker from docker.com............."
-    curl -fsSL https://get.docker.com -o get-docker.sh
+    locationD="curl -fsSL https://get.docker.com -o get-docker.sh"
+    eval $locationD
+    wait
     echo "## Getting docker.........................................."
-    sudo sh get-docker.sh
-    sleep 5s
+    getDocker="sudo sh get-docker.sh"
+    eval $getDocker
+    wait
 fi    
 }
 #
-# Here We Will Move Clone Superalgos To The Home Directory.
+# Here We Will Clone Superalgos To The Home Directory.
 function cloneFork() {
     echo "## Preparing to clone your fork............................"
     echo "# First we move to the home directory......................"
-    home="cd ~"
-    eval $home
+    movehome="cd ~"
+    eval $movehome
+    wait
     echo "## Cloning Fork............................................"
-    git clone "$fork"
+    clone="git clone "$fork""
+    eval $clone
+    wait
     echo "## Fork Cloned"
     sleep 5s
 }
@@ -97,14 +107,25 @@ function initSetup() {
     echo "## Preparing to setup Superalgos..........................."
     homeS="cd ~/Superalgos"
     eval $homeS
+    wait
     echo "Running node setup script.................................."
     setup="node setup"
     eval $setup
+    wait
     echo "## Running node setupPlugins script........................"
     plugins="node setupPlugins "$username" "$token""
     eval $plugins
+    wait
     sleep 5s
 }
+#
+## Show a Finish Message
+function showFinishMessage() {
+    echo "This Script has Finished Executing!"
+    echo "Everything should be all setup for you!"
+    echo "To run Superalgos just use the "node platform" command!"
+    sleep 10s
+} 
 #
 # Lets Clear the Terminal So Everything Starts Neat And Tidy.
 clear
