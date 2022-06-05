@@ -50,26 +50,20 @@ clear
 #
 # Here We Give The User The Needed Permissions.
 function giveUserPermissions() {
-user=$(whoami)
-echo "$user"
-echo " Please Input Your User Password To Allow For sudo Commands"
-givesudo="sudo usermod -aG sudo "$user""
-eval $givesudo
+    user=$(whoami)
+    echo "$user"
+    echo " Please Input Your User Password To Allow For sudo Commands"
+    givesudo="sudo usermod -aG sudo "$user""
+    eval $givesudo
+    wait
 }
 #
 # Here We Install The Main Dependencies.
 function getDependencies() {
-    echo "## Getting ready to get nodejs from nodesource............."
-    locationN="curl -sL https://deb.nodesource.com/setup_17.x"
-    eval $locationN
+    echo "## Getting Dependencies...................................."
+    dependencies="curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash - && sudo apt-get \ install -y \ nodejs npm git python3"
     wait
-    echo "## Getting nodejs.........................................."
-    getNode="sudo apt-get install nodejs -y"
-    eval $getNode
-    wait
-    echo "## Getting python.........................................."
-    getPython="sudo apt-get install python3 -y"
-    wait
+    sleep 10s
 }
 #
 ## If the user wants docker, the user gets docker.
