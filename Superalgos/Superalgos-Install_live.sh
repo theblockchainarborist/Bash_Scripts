@@ -60,9 +60,17 @@ function giveUserPermissions() {
 #
 # Here We Install The Main Dependencies.
 function getDependencies() {
+    echo "## First lets update........................................"
+    update="sudo apt update"
+    eval $update
+    wait
+    echo "## Getting curl............................................."
+    curl="sudo apt install -y curl"
+    eval $curl
+    wait
     echo "## Getting Node From NodeSource............................."
-    dependencies="curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash -"
-    eval $dependencies
+    nodeSource="curl -sL https://deb.nodesource.com/setup_17.x"
+    eval $nodeSource
     wait
     echo "## Getting Nodejs"
     getnode="sudo apt-get install -y nodejs"
