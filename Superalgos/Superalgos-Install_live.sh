@@ -28,6 +28,7 @@ function getSystemInfo() {
 osName=$(uname)
     #What bit is the system?
 osBit=$(getconf LONG_BIT)
+echo "  "
 echo "We are running on a "$osName" system that is "$osBit"bits from what we can tell."
 sleep 10s
 }
@@ -129,10 +130,13 @@ function initSetup() {
 #
 ## Show a Finish Message
 function showFinishMessage() {
-    echo "This Script has Finished Executing!"
-    echo "Everything should be all setup for you!"
-    echo "To run Superalgos just use the "node platform" command!"
-    sleep 10s
+    clear
+    echo "############################################################"
+    echo "# This Script has Finished Executing!                      #"
+    echo "# Everything should be all setup for you!                  #"
+    echo "# To run Superalgos just use the "node platform" command!  #"
+    echo "############################################################"
+    sleep 15s
 } 
 #
 # Lets Clear the Terminal So Everything Starts Neat And Tidy.
@@ -146,17 +150,16 @@ echo " "
 echo " "
 sleep 2s
 echo "This script is intened to be used to install Superalgos on Ubuntu"
-echo "This is inteneded to be A convience installation method"
+echo "This is A convience installation method"
 echo "After a few questions this script will:"
 echo " "
-echo " .........Check and install / update all dependencies"
 echo " .........Clone your Superalgos Fork to this machine"
 echo " .........Setup Superalgos Plugins"
 echo " .........Optional Docker Install Option For Bitcoin-Factory"
 echo " "
 echo " "
 echo " "
-sleep 5s
+sleep 7s
 clear
 # Here We Will Find Out What All The User Would Like Us To Do.
 echo " Would you like us to install Superalgos?"
@@ -182,14 +185,11 @@ then
 else
     install="n"
     echo " OK"
+    sleep 2s
+    echo " This script is only intended to install Superalgos."
+    echo " We are not sure what you would like us to do."
     sleep 1s
-    echo " Would You Like To Install Docker Then?"
-        read -p '(y/n): ' choice
-        if [ "$choice" = "y" ]
-        then
-            docker="y"
-            echo " We Will Install Docker!"
-        fi
+    echo " Please manually install Superalgos for custom install options."
 fi
 
 
