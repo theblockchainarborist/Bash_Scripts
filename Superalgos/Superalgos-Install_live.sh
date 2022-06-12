@@ -186,10 +186,13 @@ else
     install="n"
     echo " OK"
     sleep 2s
+    clear
     echo " This script is only intended to install Superalgos."
     echo " We are not sure what you would like us to do."
     sleep 1s
     echo " Please manually install Superalgos for custom install options."
+    echo "  "
+    echo "  "
 fi
 
 
