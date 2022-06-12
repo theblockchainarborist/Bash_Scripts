@@ -134,7 +134,7 @@ function showFinishMessage() {
     echo "############################################################"
     echo "# This Script has Finished Executing!                      #"
     echo "# Everything should be all setup for you!                  #"
-    echo "# To run Superalgos just use the "node platform" command!  #"
+    echo "# To run Superalgos just use the node platform command!    #"
     echo "############################################################"
     sleep 15s
 } 
