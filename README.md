@@ -1,2 +1,2 @@
 # Bash_Scripts
-_Below is a basic cheat sheet for bash commands_ 
+This Repo is still in testing. 
