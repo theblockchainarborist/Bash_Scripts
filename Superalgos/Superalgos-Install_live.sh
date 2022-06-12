@@ -69,8 +69,13 @@ function getDependencies() {
     eval $curl
     wait
     echo "## Getting Node From NodeSource............................."
-    nodeSource='curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash - && sudo apt-get install -y nodejs npm git python3'
+    nodeSource='curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash -'
     eval $nodeSource
+    wait
+    eval $update
+    wait
+    node='sudo apt install -y nodejs'
+    eval $node
     wait
     sleep 20s
 }
