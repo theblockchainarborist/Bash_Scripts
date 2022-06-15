@@ -149,7 +149,7 @@ echo "----------------------------------------"
 echo " "
 echo " "
 sleep 2s
-echo "This script is intened to be used to install Superalgos on Ubuntu"
+echo "This script is intened to be used to install Superalgos on Ubuntu and *should* work on any debain based distros"
 echo "This is A convience installation method"
 echo "After a few questions this script will:"
 echo " "
